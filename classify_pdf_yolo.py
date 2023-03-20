@@ -4,7 +4,13 @@ import fitz
 import numpy as np
 import math
 
-# added 2
+
+# Download the yolov3
+# https://pjreddie.com/media/files/yolov3.weights
+# https://github.com/pjreddie/darknet/blob/master/cfg/yolov3.cfg?raw=true
+
+
+
 # Load the PDF file
 doc = fitz.open("input.pdf")
 
@@ -21,7 +27,8 @@ classes = []
 with open("coco.names", "r") as f:
     classes = [line.strip() for line in f.readlines()]
 layer_names = net.getLayerNames()
-output_layers = [layer_names[i[0] - 1] for i in net.getUnconnectedOutLayers()]
+output_layer_names = net.getUnconnectedOutLayersNames()
+output_layers = [layer_names.index(layer) for layer in output_layer_names]
 
 # Loop through each page of the PDF
 for page in doc:

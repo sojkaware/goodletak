@@ -1,0 +1,20 @@
+import tensorflow as tf
+import cv2
+import numpy as np
+
+""" # Load the EfficientDet d4 model
+model_name = 'efficientdet_d4_coco17_tpu-32'
+model_dir = tf.saved_model.load(model_name) """
+
+
+import tensorflow as tf
+import tensorflow_hub as hub
+
+# Download and load the model
+model_url = "https://tfhub.dev/tensorflow/efficientdet/d4/1"
+model = hub.load(model_url)
+
+
+
+# Compile the model with the necessary loss function and optimizer
+#model.compile(loss='binary_crossentropy', optimizer='adam')
